@@ -5,7 +5,13 @@ import { useAppDispatch } from '../../app/hooks';
 import { pushToManualClicks } from '../game/gameSlice';
 import { IDice } from '../game/types';
 
-function DiceRoller({ id, currentRoll, history, maxRunIndex }: IDice) {
+function DiceRoller({
+   id,
+   currentRoll,
+   history,
+   maxRunIndex,
+   isWinState,
+}: IDice) {
    const dispatch = useAppDispatch();
 
    const click = () => {
@@ -14,10 +20,10 @@ function DiceRoller({ id, currentRoll, history, maxRunIndex }: IDice) {
 
    return (
       <IRBorder>
-         <div>
+         <div className={isWinState ? 'opacity-50' : ''}>
             <div>Current: {currentRoll}</div>
             <div>History: {history.join(' ')}</div>
-            <div>Max: {maxRunIndex}</div>
+            <div>Highest run length: {maxRunIndex + 1} / 6</div>
             <IRButton onClick={click}>Roll</IRButton>
          </div>
       </IRBorder>

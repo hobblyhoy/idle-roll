@@ -9,6 +9,7 @@ import {
 } from './features/game/gameSlice';
 import ItemStore from './features/item-store/ItemStore';
 import DiceRollerManager from './features/dice/DiceRollerManager';
+import { formatMoney } from './utils/UtilFuncs';
 
 export const App = () => {
    const dispatch = useAppDispatch();
@@ -38,40 +39,12 @@ export const App = () => {
                      </p>
                      <h1>Roll, earn, upgrade.</h1>
                      <div className="text-xl font-semibold text-green-400 mb-4">
-                        Money: $
-                        {(currentMoney / 100).toLocaleString('en-US', {
-                           minimumFractionDigits: 2,
-                           maximumFractionDigits: 2,
-                        })}
-                     </div>
-                     <div className="text-slate-300 mt-1 mb-0">
-                        <p>
-                           You get a payout ONLY when you hit a certain number
-                           of rolls in a roll. You have to pay to increase when
-                           this payout happens. It's basically a bunch of coins
-                           flipping and dice rolling. Each time they roll it
-                           does a little animation.
-                        </p>{' '}
-                        <p>
-                           The game ends as soon as you get
-                           1,2,3,4,5,6,5,4,3,2,1 1 is $0.01 2 is $0.10 3 is
-                           $1.00 4 is $10 5 is $100 6 is $1,000 5 is $10,000 4
-                           is $100,000 3 is $1,000,000 2 is $10,000,000 1 is
-                           Game win.
-                        </p>{' '}
-                        <p>
-                           The closer you get, the more money you earn. To
-                           prevent crowding the interface we only show the wins
-                           from the current highest level - 2 You'll actually
-                           set the dice down somewhere in the "play" area. Maybe
-                           like a green felt all craps style. You click it to
-                           make it start a little roll animation
-                        </p>
+                        Money: ${formatMoney(currentMoney)}
                      </div>
                   </div>
                </div>
-               <DiceRollerManager />
                <ItemStore />
+               <DiceRollerManager />
             </header>
          </div>
       </div>
