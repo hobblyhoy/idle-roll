@@ -31,11 +31,11 @@ const autoClickRates = [
    { id: 10, cost: 4000, rollEveryMs: 100 },
    { id: 11, cost: 8000, rollEveryMs: 50 },
    { id: 12, cost: 16_000, rollEveryMs: 25 },
-   { id: 13, cost: 16_000, rollEveryMs: 10 },
-   { id: 14, cost: 16_000, rollEveryMs: 5 },
-   { id: 15, cost: 16_000, rollEveryMs: 3 },
-   { id: 16, cost: 16_000, rollEveryMs: 2 },
-   { id: 17, cost: 16_000, rollEveryMs: 1 },
+   { id: 13, cost: 32_000, rollEveryMs: 10 },
+   { id: 14, cost: 64_000, rollEveryMs: 5 },
+   { id: 15, cost: 128_000, rollEveryMs: 3 },
+   { id: 16, cost: 256_000, rollEveryMs: 2 },
+   { id: 17, cost: 512_000, rollEveryMs: 1 },
    { id: 18, cost: 0, rollEveryMs: 1 },
 ];
 
@@ -83,7 +83,7 @@ function ItemStore() {
          >
             Add Dice (${formatMoney(nextDiceCost)})
          </IRButton>
-         {totalDice > 0 && (
+         {totalDice > 0 && currentClickRate.rollEveryMs !== 1 && (
             <IRButton
                onClick={addAutoClick}
                disabled={nextClickRate!.cost > currentMoney}

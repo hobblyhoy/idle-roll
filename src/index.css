@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-light-bg: #947753;
+  --color-dark-bg: #7c6342;
+  --color-light-standout: #d6b584;
+  --color-dark-standout: #c89851;
+}
+
 body {
   margin: 0;
   font-family:
