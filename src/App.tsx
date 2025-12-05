@@ -23,7 +23,7 @@ export const App = () => {
    // }, []);
 
    return (
-      <div className="bg-light-bg h-screen w-screen">
+      <div className="bg-light-bg">
          <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-start-3 sm:col-span-8 lg:col-start-4 lg:col-span-6">
                <div className="mx-3 mt-3 sm:mx-0 sm:mb-0 gap-3">

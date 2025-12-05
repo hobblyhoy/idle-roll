@@ -12,7 +12,7 @@ function IRSection({ label, children }: IProps) {
             <div className="text-center text-3xl p-2">{label}</div>
          </div>
          <div className="rounded-b-2xl border-b-4 border-x-4 bg-dark-bg">
-            <div className="p-2">{children}</div>
+            <div className="">{children}</div>
          </div>
       </div>
    );
