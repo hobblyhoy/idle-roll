@@ -13,7 +13,7 @@ function ItemStore() {
 
    return (
       <IRSection label="Store">
-         <div className="flex justify-center p-1 gap-1 sm:gap-3">
+         <div className="flex justify-center px-1 py-3 gap-1 sm:gap-3">
             <div className="flex flex-col items-center">
                <img
                   src={cardBackStorePoop}

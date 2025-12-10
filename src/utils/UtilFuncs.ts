@@ -1,8 +1,16 @@
-export const rollDice = (sides: number) =>
-   Math.floor(Math.random() * sides) + 1;
-
 export const formatMoney = (amount: number) =>
    (amount / 100).toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
+      minimumFractionDigits: amount > 100000 ? 0 : 2,
+      maximumFractionDigits: amount > 100000 ? 0 : 2,
    });
+
+export const formatToNPlacesCurry = (places: number) => {
+   return (amount: number) => {
+      return amount.toLocaleString('en-US', {
+         minimumFractionDigits: places,
+         maximumFractionDigits: places,
+      });
+   };
+};
+export const formatTo4Places = formatToNPlacesCurry(4);
+export const formatTo3Places = formatToNPlacesCurry(3);

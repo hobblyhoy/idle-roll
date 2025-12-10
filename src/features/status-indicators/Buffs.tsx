@@ -3,7 +3,7 @@ import IRSection from '../../design-system/IRSection';
 function Buffs() {
    return (
       <IRSection label="Buffs">
-         <div>Nothing yet...</div>
+         <div className="p-4">Nothing yet...</div>
       </IRSection>
    );
 }
