@@ -12,6 +12,11 @@
   --color-dark-bg: #7c6342;
   --color-light-standout: #d6b584;
   --color-dark-standout: #c89851;
+  --color-card-outer-border: #2e2212;
+  --color-card-inner-border: #59371b;
+  --color-card-outer-bg: #a8723b;
+  --color-card-bookends-bg: #ba8a47;
+  --color-card-image-bg: #d6bc90;
 }
 
 body {

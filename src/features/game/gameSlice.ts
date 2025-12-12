@@ -1,6 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAppSlice } from '../../app/createAppSlice';
 import _ from 'lodash';
+import { IPlayingCard } from './types';
+import { PrebakeGrowth, PrebakeSpeed } from '../playing-cards/PrebakedCards';
 
 export type GameSliceState = {
    tickInterval: number; // How frequently the autodraw will happen
@@ -8,6 +10,9 @@ export type GameSliceState = {
    currentBase: number; // 123 = $1.23
    currentSpeed: number; // float multiplier
    currentMultiplier: number; // float multiplier
+   cardDeck: IPlayingCard[];
+    //index of the card thats currently active. 0 is the top. -1 for empty deck.
+   activeCardIndex: number;
 };
 
 const initialState: GameSliceState = {
@@ -16,6 +21,8 @@ const initialState: GameSliceState = {
    currentBase: 34,
    currentSpeed: 1,
    currentMultiplier: 1,
+   cardDeck: [PrebakeGrowth, PrebakeSpeed],
+   activeCardIndex: 0,
 };
 
 export const gameSlice = createAppSlice({
@@ -25,6 +32,11 @@ export const gameSlice = createAppSlice({
       addMoney: create.reducer((state, action: PayloadAction<number>) => {
          state.currentMoney = state.currentMoney + action.payload;
       }),
+      addToDeck: create.reducer(
+         (state, action: PayloadAction<IPlayingCard>) => {
+            state.cardDeck = [...state.cardDeck, action.payload];
+         }
+      ),
    }),
    selectors: {
       selectTickInterval: game => game.tickInterval,
@@ -32,6 +44,7 @@ export const gameSlice = createAppSlice({
       selectCurrentBase: game => game.currentBase,
       selectCurrentSpeed: game => game.currentSpeed,
       selectCurrentMultiplier: game => game.currentMultiplier,
+      selectCurrentCard: game => game.cardDeck[game.activeCardIndex]
    },
 });
 
@@ -43,4 +56,5 @@ export const {
    selectCurrentBase,
    selectCurrentSpeed,
    selectCurrentMultiplier,
+   selectCurrentCard,
 } = gameSlice.selectors;
