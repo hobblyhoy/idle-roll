@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAppSlice } from '../../app/createAppSlice';
 import _ from 'lodash';
 import { IPlayingCard } from './types';
-import { PrebakeGrowth, PrebakeSpeed } from '../playing-cards/PrebakedCards';
+import { PrebakeGrowth, PrebakeMultiply } from '../playing-cards/PrebakedCards';
 
 export type GameSliceState = {
    tickInterval: number; // How frequently the autodraw will happen
@@ -19,11 +19,11 @@ export type GameSliceState = {
 const initialState: GameSliceState = {
    tickInterval: 2000,
    currentMoney: 0,
-   currentBase: 34,
+   currentBase: 1,
    currentSpeed: 1,
    currentMultiplier: 1,
    //cardDeck: [],
-   cardDeck: [PrebakeGrowth, PrebakeSpeed],
+   cardDeck: [PrebakeGrowth, PrebakeMultiply],
    activeCardIndex: -1,
    hasCards: true, // reset to false after testing
 };
@@ -40,6 +40,33 @@ export const gameSlice = createAppSlice({
             state.cardDeck = [...state.cardDeck, action.payload];
          }
       ),
+      drawCard: create.reducer(state => {
+         // Guards
+         if (state.cardDeck.length === 0) {
+            console.warn('Cannot draw from empty deck');
+            return;
+         }
+
+         // Update the card index
+         state.activeCardIndex++;
+         if (state.activeCardIndex > state.cardDeck.length - 1) {
+            state.activeCardIndex = 0;
+         }
+
+         // Process the card
+         let newCard = state.cardDeck[state.activeCardIndex];
+         if (newCard.duration === 0) {
+            state.currentBase += newCard.baseModifier;
+            state.currentMultiplier += newCard.multiplierModifier;
+            state.currentSpeed += newCard.speedModifier;
+         } else {
+            // TODO need to work out the buffs
+         }
+
+         // Credit the draw
+         state.currentMoney =
+            state.currentMoney + state.currentBase * state.currentMultiplier;
+      }),
    }),
    selectors: {
       selectTickInterval: game => game.tickInterval,
@@ -53,7 +80,7 @@ export const gameSlice = createAppSlice({
    },
 });
 
-export const { addMoney } = gameSlice.actions;
+export const { addMoney, addToDeck, drawCard } = gameSlice.actions;
 
 export const {
    selectTickInterval,

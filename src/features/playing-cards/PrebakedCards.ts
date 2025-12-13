@@ -24,6 +24,14 @@ export const PrebakeSpeed: IPlayingCard = {
    storeSource: 'free',
 };
 
-// title="Growth"
-// imageType="growth"
-// description="Base + 0.01 Permanently"
+export const PrebakeMultiply: IPlayingCard = {
+   id: 3,
+   baseModifier: 0,
+   speedModifier: 0,
+   multiplierModifier: 0.1,
+   duration: 0,
+   title: 'Multiply!',
+   imageType: 'growth',
+   description: 'Multi + 0.1 Permanently',
+   storeSource: 'free',
+};

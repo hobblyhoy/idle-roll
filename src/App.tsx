@@ -1,13 +1,10 @@
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { selectTickInterval } from './features/game/gameSlice';
 import PrimaryStats from './features/status-indicators/PrimaryStats';
 import DeckPanel from './features/playing-cards/DeckPanel';
-import Buffs from './features/status-indicators/Buffs';
 import MoneyIndicator from './features/status-indicators/MoneyIndicator';
 import AutoDraw from './features/status-indicators/AutoDraw';
 import ItemStore from './features/item-store/ItemStore';
-import PlayingCard from './features/playing-cards/PlayingCard';
 
 export const App = () => {
    const dispatch = useAppDispatch();
