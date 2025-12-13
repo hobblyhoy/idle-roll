@@ -11,18 +11,21 @@ export type GameSliceState = {
    currentSpeed: number; // float multiplier
    currentMultiplier: number; // float multiplier
    cardDeck: IPlayingCard[];
-    //index of the card thats currently active. 0 is the top. -1 for empty deck.
+   //index of the card thats currently active. 0 is the top. -1 for empty deck.
    activeCardIndex: number;
+   hasCards: boolean;
 };
 
 const initialState: GameSliceState = {
    tickInterval: 2000,
-   currentMoney: 123,
+   currentMoney: 0,
    currentBase: 34,
    currentSpeed: 1,
    currentMultiplier: 1,
+   //cardDeck: [],
    cardDeck: [PrebakeGrowth, PrebakeSpeed],
-   activeCardIndex: 0,
+   activeCardIndex: -1,
+   hasCards: true, // reset to false after testing
 };
 
 export const gameSlice = createAppSlice({
@@ -44,7 +47,9 @@ export const gameSlice = createAppSlice({
       selectCurrentBase: game => game.currentBase,
       selectCurrentSpeed: game => game.currentSpeed,
       selectCurrentMultiplier: game => game.currentMultiplier,
-      selectCurrentCard: game => game.cardDeck[game.activeCardIndex]
+      selectCurrentCard: game =>
+         game.activeCardIndex >= 0 ? game.cardDeck[game.activeCardIndex] : null,
+      selectHasCards: game => game.cardDeck.length > 0,
    },
 });
 
@@ -57,4 +62,5 @@ export const {
    selectCurrentSpeed,
    selectCurrentMultiplier,
    selectCurrentCard,
+   selectHasCards,
 } = gameSlice.selectors;
