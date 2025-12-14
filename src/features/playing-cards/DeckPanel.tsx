@@ -33,11 +33,13 @@ function DeckPanel() {
          <div className="flex justify-evenly items-center">
             <div className="relative cursor-pointer" onClick={drawOnClick}>
                <img src={cardToDisplay} alt="" className="max-h-40 " />
-               <img
-                  src={cardToDisplay}
-                  alt="Draw card"
-                  className={`max-h-40 absolute inset-0 ${cardAnimationClass}`}
-               />
+               {hasCards && (
+                  <img
+                     src={cardToDisplay}
+                     alt="Draw card"
+                     className={`max-h-40 absolute inset-0 ${cardAnimationClass}`}
+                  />
+               )}
             </div>
             {currentCard ? (
                <PlayingCard {...currentCard} />

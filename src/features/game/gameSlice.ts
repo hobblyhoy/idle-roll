@@ -22,8 +22,8 @@ const initialState: GameSliceState = {
    currentBase: 1,
    currentSpeed: 1,
    currentMultiplier: 1,
-   //cardDeck: [],
-   cardDeck: [PrebakeGrowth, PrebakeMultiply],
+   cardDeck: [],
+   // cardDeck: [PrebakeGrowth, PrebakeMultiply],
    activeCardIndex: -1,
    hasCards: true, // reset to false after testing
 };
